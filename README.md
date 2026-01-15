@@ -74,10 +74,11 @@ Download and install the official Raspberry Pi Imager from [raspberrypi.com/soft
 
 #### SSH Connection
 ```bash
-ssh pi@raspberrypi.local
+ssh <username>@raspberrypi.local
 # or
-ssh pi@<IP_ADDRESS>
+ssh <username>@<IP_ADDRESS>
 ```
+Replace `<username>` with the username you configured in step 5 during OS imaging.
 
 #### Update the System
 ```bash
@@ -183,9 +184,10 @@ Enable in Tailscale admin panel under machine settings.
 Configure DNS manually on each device to point to the Pi's IP address.
 
 **Option 3: Via Tailscale**
-1. In Tailscale admin panel, go to DNS settings
-2. Add nameserver: `100.x.x.x` (your Pi's Tailscale IP)
-3. Enable "Override local DNS"
+1. Get your Pi's Tailscale IP: `tailscale ip -4` (typically in 100.64.0.0/10 range)
+2. In Tailscale admin panel, go to DNS settings
+3. Add nameserver: your Pi's Tailscale IP from step 1
+4. Enable "Override local DNS"
 
 ## Configuration
 
@@ -230,8 +232,8 @@ In Tailscale admin panel:
 
 ### Accessing PiHole Remotely
 With Tailscale connected on your device:
-- Web Interface: `http://<TAILSCALE_IP>/admin`
-- Or use: `http://100.x.x.x/admin`
+1. Get your Pi's Tailscale IP: `tailscale ip -4` on the Pi
+2. Access web interface: `http://<TAILSCALE_IP>/admin` (e.g., `http://100.64.1.2/admin`)
 
 ### Monitoring
 - View blocking stats in web interface dashboard
@@ -317,7 +319,7 @@ sudo apt update && sudo apt upgrade -y
 pihole -up
 
 # Update Tailscale
-sudo apt update && sudo apt install --only-upgrade tailscale
+sudo tailscale update
 ```
 
 ### Backup Configuration
