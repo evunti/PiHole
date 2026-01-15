@@ -327,8 +327,8 @@ sudo tailscale update
 # Backup PiHole settings
 pihole -a -t
 
-# Backup to remote location
-scp /home/pi/pihole-backup-*.tar.gz user@remote:/backup/
+# Backup to remote location (replace <username> with your username)
+scp /home/<username>/pihole-backup-*.tar.gz user@remote:/backup/
 ```
 
 ### Monitor System Resources
