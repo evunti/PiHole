@@ -184,7 +184,7 @@ Enable in Tailscale admin panel under machine settings.
 Configure DNS manually on each device to point to the Pi's IP address.
 
 **Option 3: Via Tailscale**
-1. Get your Pi's Tailscale IP: `tailscale ip -4` (typically in 100.64.0.0/10 range)
+1. Get your Pi's Tailscale IP: `tailscale ip -4` (typically in 100.64.0.0/10 CGNAT range)
 2. In Tailscale admin panel, go to DNS settings
 3. Add nameserver: your Pi's Tailscale IP from step 1
 4. Enable "Override local DNS"
@@ -327,8 +327,8 @@ sudo tailscale update
 # Backup PiHole settings
 pihole -a -t
 
-# Backup to remote location (replace <username> with your username)
-scp /home/<username>/pihole-backup-*.tar.gz user@remote:/backup/
+# Backup to remote location (replace <username> and <remote_user> with actual usernames)
+scp /home/<username>/pihole-backup-*.tar.gz <remote_user>@<remote_host>:/backup/
 ```
 
 ### Monitor System Resources
